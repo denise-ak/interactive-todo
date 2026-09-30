@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    
+    <link rel="stylesheet" href="style.css">
+    <title>to-do</title>
+</head>
+<body>
+<main class="app">
+    <h1>to-do</h1>
+
+    <div class="todo-card">
+        <div class="input-area">
+            <select id="priorityInput" aria-label="Priority">
+                <option value="" selected>priority</option>
+                <option value="low">low</option>
+                <option value="medium">medium</option>
+                <option value="high">high</option>
+            </select>
+            <input id="taskInput" type="text" placeholder="enter a task...">
+            <button id="addButton">add task</button>
+
+        </div>
+        <div class="filters">
+            <button id="allButton">all</button>
+            <button id="activeButton">active</button>
+            <button id="completedButton">completed</button>
+        </div>
+        <p id="feedback"></p>
+        
+        <ul id="taskList"></ul>
+        
+
+    </div>
+
+</main>
+<script src="javascript.js"></script>
+</body>
+</html>

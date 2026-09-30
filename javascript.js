@@ -105,6 +105,7 @@ function displayTask(task) {
         save();
 
         li.remove();
+        countCompleted();
 
     });
 

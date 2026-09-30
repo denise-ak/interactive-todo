@@ -4,10 +4,16 @@
 
 body {
     margin: 0;
-    font-family: Helvetica Neue;
+    font-family: 'DM Sans', sans-serif;
     font-size: 15px;
     background-color: #eef2ee;
     color: #202a25;
+}
+
+input,
+select,
+button {
+    font: inherit;
 }
 
 .app {
@@ -48,7 +54,7 @@ h2 {
 #addButton,
 .filters button,
 #taskList button {
-    font-family: Arial, sans-serif;
+    font-family: DM Sans;
     font-size: 15px;
 }
 
@@ -91,7 +97,10 @@ h2 {
     font-size: 15px;
     color: #b24e44;
 }
-
+#taskCount {
+    margin: 15px 0 10px;
+    color: #557b61;
+}
 .filters {
     display: flex;
     width: fit-content;
@@ -146,7 +155,7 @@ h2 {
     border-radius: 7px;
     background-color: #b24e44;
     color: white;
-    font-family: Arial, sans-serif;
+    font-family: inherit;
     font-size: 13px;
     cursor: pointer;
 }

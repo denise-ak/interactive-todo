@@ -6,6 +6,7 @@ const priorityInput = document.getElementById("priorityInput");
 const allButton = document.getElementById("allButton");
 const activeButton = document.getElementById("activeButton");
 const completedButton = document.getElementById("completedButton");
+const taskCount = document.getElementById("taskCount");
 
 let tasks = load();
 
@@ -16,9 +17,12 @@ function save() {
 }
 
 function load() {
-    const raw = localStorage.getItem("tasks");
-
-    return JSON.parse(raw) || [];
+    try {
+        const raw = localStorage.getItem("tasks");
+        return JSON.parse(raw) || [];
+    } catch (error) {
+        return [];
+    }
 }
 
 function addTask() {
@@ -41,6 +45,7 @@ function addTask() {
     save();
     taskInput.value = "";
     displayTask(task);
+    countCompleted();
 
 }
 
@@ -62,19 +67,26 @@ function displayTask(task) {
     }
 
     checkbox.addEventListener("change", function() {
-        task.completed = checkbox.checked;
 
-        if (task.completed) {
+        tasks = tasks.map(function(t) {
+            if (t.id === task.id) {
+                return {
+                    ...t,
+                    completed: checkbox.checked
+                };
+            }
 
+            return t;
+        });
+
+        if (checkbox.checked) {
             taskText.style.textDecoration = "line-through";
-
         } else {
-
             taskText.style.textDecoration = "none";
-
         }
 
         save();
+        countCompleted();
 
     });
 
@@ -131,7 +143,7 @@ tasks.forEach(function(task) {
     displayTask(task);
 
 });
-
+countCompleted();
 function filterTasks(filter) {
     taskList.innerHTML = "";
 
@@ -163,3 +175,15 @@ activeButton.addEventListener("click", function() {
 completedButton.addEventListener("click", function() {
     filterTasks("completed");
 });
+
+function countCompleted() {
+    const completed = tasks.reduce(function(count, task) {
+        if (task.completed) {
+            return count + 1;
+        }
+
+        return count;
+    }, 0);
+
+    taskCount.textContent = completed + " of " + tasks.length + " done";
+}
